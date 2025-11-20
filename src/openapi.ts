@@ -34,6 +34,10 @@ Target response time: <200ms (actual times may vary based on network and AA API 
   },
   servers: [
     {
+      url: 'https://aadz.vercel.app',
+      description: 'Production server'
+    },
+    {
       url: 'http://localhost:3000',
       description: 'Development server'
     }
