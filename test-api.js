@@ -15,7 +15,7 @@ import { parse } from 'csv-parse/sync';
 
 // Configuration
 const API_BASE_URL = process.env.API_URL || 'http://localhost:3000';
-const API_KEY = process.env.API_KEY || 'your-secret-api-key-change-this';
+const API_KEY = process.env.API_KEY || '40e284ab9484869860e7cf4224966c7f';
 const DEVICE_IDS_FILE = './documentation/sample_device_ids.csv';
 
 // Parse command line arguments
@@ -44,7 +44,7 @@ Usage:
 
 Environment variables:
   API_URL     API base URL (default: http://localhost:3000)
-  API_KEY     API key for authentication (default: your-secret-api-key-change-this)
+  API_KEY     API key for authentication (default: 40e284ab9484869860e7cf4224966c7f)
     `);
     process.exit(0);
   }

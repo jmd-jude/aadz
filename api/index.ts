@@ -1,5 +1,6 @@
 import express, { type Express, type Request, type Response, type NextFunction } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import { apiReference } from '@scalar/express-api-reference';
 import validationRouter from '../src/routes/validation.js';
 import { openApiSpec } from '../src/openapi.js';
@@ -9,6 +10,7 @@ dotenv.config();
 const app: Express = express();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // API Key Authentication Middleware
@@ -34,11 +36,9 @@ app.use(
   '/docs',
   apiReference({
     spec: {
-      content: openApiSpec
-    },
-    theme: 'purple',
-    darkMode: true
-  })
+      content: openApiSpec as any
+    }
+  } as any)
 );
 
 // Health check endpoint (no auth required)

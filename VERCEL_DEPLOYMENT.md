@@ -89,7 +89,7 @@ In the Vercel dashboard:
 
 | Name | Value |
 |------|-------|
-| `API_KEY` | `your-secret-api-key-change-this` |
+| `API_KEY` | `6122f8a2cddd8dd54312244e9923d41f` |
 | `AA_KEY_ID_VERC` | `TIbUp6N2vHWOF4Qw` |
 | `AA_SECRET_VERC` | `ZEYmrI37pJm3RQ1qgdIZT1B2JDKzuMJg` |
 | `AA_ORIGIN` | `https://api.audienceacuity.com` |

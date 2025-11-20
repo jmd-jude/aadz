@@ -18,7 +18,7 @@ X-API-Key: your-api-key-here
 
 ## How it works
 
-1. Client sends device ID and metadata to \`/v2/validate\`
+1. Client sends device ID and metadata to \`/v1/validate\`
 2. API queries SIG
 3. Confidence score is calculated based on multiple signals
 4. Returns validation result with confidence score and contributing signals
@@ -173,7 +173,7 @@ Target response time: <200ms (actual times may vary based on network and AA API 
         }
       }
     },
-    '/v2/validate': {
+    '/v1/validate': {
       post: {
         summary: 'Validate device',
         description: 'Validate a device ID against the identity graph and return confidence score',
@@ -301,7 +301,7 @@ Target response time: <200ms (actual times may vary based on network and AA API 
         }
       }
     },
-    '/v2/templates': {
+    '/v1/templates': {
       get: {
         summary: 'Get supported templates',
         description: 'List all supported SIG templates and the currently configured template',

@@ -27,6 +27,10 @@ const aadzTest1Algorithm: ScoringAlgorithm = {
     }
 
     const identity = aaResponse.identities[0];
+    if (!identity) {
+      signals.push('No identity data found');
+      return { confidence_score: confidenceScore, validated, signals };
+    }
 
     // Primary validation: Check if device is validated in National Consumer Database
     if (identity.validated === true) {
@@ -56,30 +60,34 @@ const aadzTest1Algorithm: ScoringAlgorithm = {
     // Future enhancement: analyze frequency, intensity, strength
     if (identity.ips && identity.ips.length > 0) {
       const ip = identity.ips[0];
-      signals.push('IP data available');
+      if (!ip) {
+        signals.push('IP data unavailable');
+      } else {
+        signals.push('IP data available');
 
-      // Placeholder for frequency analysis
-      if (ip.frequency !== undefined) {
-        // TODO: Implement frequency-based scoring
-        // Example: Higher frequency might indicate legitimate regular usage
-        // confidenceScore += calculateFrequencyScore(ip.frequency);
-        signals.push(`IP frequency: ${ip.frequency}`);
-      }
+        // Placeholder for frequency analysis
+        if (ip.frequency !== undefined) {
+          // TODO: Implement frequency-based scoring
+          // Example: Higher frequency might indicate legitimate regular usage
+          // confidenceScore += calculateFrequencyScore(ip.frequency);
+          signals.push(`IP frequency: ${ip.frequency}`);
+        }
 
-      // Placeholder for intensity analysis
-      if (ip.intensity !== undefined) {
-        // TODO: Implement intensity-based scoring
-        // Example: Intensity patterns could indicate fraud or legitimacy
-        // confidenceScore += calculateIntensityScore(ip.intensity);
-        signals.push(`IP intensity: ${ip.intensity}`);
-      }
+        // Placeholder for intensity analysis
+        if (ip.intensity !== undefined) {
+          // TODO: Implement intensity-based scoring
+          // Example: Intensity patterns could indicate fraud or legitimacy
+          // confidenceScore += calculateIntensityScore(ip.intensity);
+          signals.push(`IP intensity: ${ip.intensity}`);
+        }
 
-      // Placeholder for strength analysis
-      if (ip.strength !== undefined) {
-        // TODO: Implement strength-based scoring
-        // Example: Stronger IP connections might increase confidence
-        // confidenceScore += calculateStrengthScore(ip.strength);
-        signals.push(`IP strength: ${ip.strength}`);
+        // Placeholder for strength analysis
+        if (ip.strength !== undefined) {
+          // TODO: Implement strength-based scoring
+          // Example: Stronger IP connections might increase confidence
+          // confidenceScore += calculateStrengthScore(ip.strength);
+          signals.push(`IP strength: ${ip.strength}`);
+        }
       }
     }
 
