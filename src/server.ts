@@ -32,6 +32,11 @@ const authenticateApiKey = (req: Request, res: Response, next: NextFunction): vo
   next();
 };
 
+// Root path - redirect to documentation
+app.get('/', (req: Request, res: Response) => {
+  res.redirect('/docs');
+});
+
 // API Documentation (no auth required)
 app.use(
   '/docs',
