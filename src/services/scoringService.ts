@@ -32,13 +32,13 @@ const aadzTest1Algorithm: ScoringAlgorithm = {
       return { confidence_score: confidenceScore, validated, signals };
     }
 
-    // Primary validation: Check if device is validated in National Consumer Database
+    // Primary validation: Check if device is validated
     if (identity.validated === true) {
       confidenceScore += 0.7;
-      signals.push('Device validated in National Consumer Database');
+      signals.push('Device validated');
       validated = true;
     } else {
-      signals.push('Device not found in National Consumer Database');
+      signals.push('Device not validated');
     }
 
     // Check for email data

@@ -49,6 +49,32 @@ app.use(
   } as any)
 );
 
+// OpenAPI spec endpoint (for Zudoku and other tools)
+app.get('/openapi.json', (req: Request, res: Response) => {
+  res.json(openApiSpec);
+});
+
+// Zudoku Documentation (alternative UI)
+app.get('/docs-zudoku', (req: Request, res: Response) => {
+  const html = `
+<!doctype html>
+<html>
+  <head>
+    <title>Device Validation API - Zudoku</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="https://cdn.zudoku.dev/logos/favicon.svg" />
+    <script type="module" src="https://cdn.zudoku.dev/latest/main.js" crossorigin></script>
+    <link rel="stylesheet" href="https://cdn.zudoku.dev/latest/style.css" crossorigin />
+  </head>
+  <body>
+    <div data-api-url="${req.protocol}://${req.get('host')}/openapi.json"></div>
+  </body>
+</html>
+  `;
+  res.send(html);
+});
+
 // Health check endpoint (no auth required)
 app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
@@ -77,7 +103,8 @@ app.listen(PORT, () => {
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`Port: ${PORT}`);
   console.log('\n📚 API Documentation:');
-  console.log(`   http://localhost:${PORT}/docs`);
+  console.log(`   Scalar:  http://localhost:${PORT}/docs`);
+  console.log(`   Zudoku:  http://localhost:${PORT}/docs-zudoku`);
   console.log('\n🔍 Endpoints:');
   console.log(`   Health:     http://localhost:${PORT}/health`);
   console.log(`   Validate:   http://localhost:${PORT}/v1/validate`);

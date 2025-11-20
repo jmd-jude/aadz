@@ -57,7 +57,7 @@ No authentication required. Returns server status.
 
 ### Validate Device
 ```
-POST /v2/validate
+POST /v1/validate
 ```
 
 **Headers:**
@@ -97,7 +97,7 @@ X-API-Key: your-secret-api-key-change-this
 
 ### Get Supported Templates
 ```
-GET /v2/templates
+GET /v1/templates
 ```
 
 **Headers:**
